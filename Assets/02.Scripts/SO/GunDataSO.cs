@@ -5,19 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/WeaponData/GunDataSO")]
 public class GunDataSO : ScriptableObject
 {
+    [Header("총 관련")]
     [Tooltip("총의 스프라이트")]
     public Sprite gunSprite;
 
-    [Tooltip("총알의 스프라이트")]
-    public GameObject bulletPrefabs;
+    [Tooltip("총알의 데이터")]
+    public BulletDataSO bulletDataSO;
 
     [Space(10f)]
-    [Tooltip("총의 데미지 (총알은 자체적으로 데미지가 없음)")]
-    public float damage;
-
-    [Tooltip("총알이 날라가는 속도")]
-    public float bulletSpeed;
-
     [Tooltip("총알이 퍼지는 각도")]
     public float bulletSpreadAngle;
 
@@ -25,16 +20,16 @@ public class GunDataSO : ScriptableObject
     public float attackDelay;
 
     [Space(10f)]
-    [Tooltip("자동 공격 체크")]
-    public bool autoAttack = false;
+    [Tooltip("총알(자원)의 최대치")]
+    public int maxBullet;
 
-    [Tooltip("차징 공격 체크")]
-    public bool chargeAttack = false;
+    [Tooltip("총의 남은 총알 (자원)")]
+    public int haveBullet;
 
     [Space(10f)]
-    [Tooltip("총알(자원)의 최대치")]
-    public float maxBullet;
+    [Tooltip("자동 공격 체크 (하나만 해야함)")]
+    public bool autoAttack = false;
 
-    [Tooltip("총의 남은 자원 (총알)")]
-    public float haveBullet;
+    [Tooltip("차징 공격 체크 (하나만 해야함)")]
+    public bool chargeAttack = false;
 }

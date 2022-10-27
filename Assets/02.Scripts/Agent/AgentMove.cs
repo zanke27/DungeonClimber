@@ -4,33 +4,28 @@ using UnityEngine;
 
 public class AgentMove : MonoBehaviour
 {
-    
+    protected Vector2 _moveDir = Vector2.zero;
+    protected Rigidbody2D _rigidbody2D = null;
 
-    protected Vector2 moveDir = Vector2.zero;
-
-    // AgentInput을 따로 빼서 거기서 관리 할 예정
-    JoyStick input = null;
+    private void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
 
     [SerializeField]
     private float speed = 10;
 
-    private void Awake()
-    {
-        input = GameObject.Find("JoyStickPlace").GetComponent<JoyStick>();
-    }
-
     // 움직임 벡터값 조정 최소값을 0.2로 이상하면 없앨거
-    protected virtual void SetMoveDir()
+    public void SetMoveDir(Vector2 direction)
     {
-        moveDir.x = input.inputDir == Vector2.zero ? 0 : 
-            Mathf.Clamp(Mathf.Abs(input.inputDir.x), 0.2f, 1) * (Mathf.Abs(input.inputDir.x) / input.inputDir.x);
-        moveDir.y = input.inputDir == Vector2.zero ? 0 : 
-            Mathf.Clamp(Mathf.Abs(input.inputDir.y), 0.2f, 1) * (Mathf.Abs(input.inputDir.y) / input.inputDir.y);
+        _moveDir.x = direction == Vector2.zero ? 0 : 
+            Mathf.Clamp(Mathf.Abs(direction.x), 0.2f, 1) * (Mathf.Abs(direction.x) / direction.x);
+        _moveDir.y = direction == Vector2.zero ? 0 : 
+            Mathf.Clamp(Mathf.Abs(direction.y), 0.2f, 1) * (Mathf.Abs(direction.y) / direction.y);
     }
 
     private void FixedUpdate()
     {
-        SetMoveDir();
-        gameObject.transform.Translate(moveDir * Time.deltaTime * speed);
+        _rigidbody2D.velocity = _moveDir * speed;
     }
 }

@@ -37,6 +37,7 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
         DragEvent(eventData);
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)

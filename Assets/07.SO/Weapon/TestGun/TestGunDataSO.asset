@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0e7eed254a5694c9faaf6b713cff7d, type: 3}
   m_Name: TestGunDataSO
   m_EditorClassIdentifier: 
-  gunSprite: {fileID: 0}
-  bulletPrefabs: {fileID: 0}
-  damage: 5
-  bulletSpeed: 10
+  gunSprite: {fileID: 21300000, guid: c0f42da72c8397f4d8a0744eb24acde6, type: 3}
+  bulletDataSO: {fileID: 11400000, guid: 2927511e4baf426488ee7b3f8d811f0c, type: 2}
   bulletSpreadAngle: 0
   attackDelay: 0.1
-  autoAttack: 1
-  chargeAttack: 0
   maxBullet: 50
   haveBullet: 50
+  autoAttack: 1
+  chargeAttack: 0
