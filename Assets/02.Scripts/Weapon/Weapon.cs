@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,16 +40,24 @@ public class Weapon : MonoBehaviour
 
     #endregion
 
-    public UnityEvent OnAttack;
+    protected Action AttackAction;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _ammo = _gundataSO.maxBullet;
+        AttackActionInit();
     }
 
     private void Update()
     {
         UseWeapon();
+    }
+
+    // AttackAction에 Attack이라는 함수를 넣을 건데 바꿀필요가 있다면 이 함수를 바꿔서 Attack을 넣게
+    protected virtual void AttackActionInit()
+    {
+        AttackAction -= Attack;
+        AttackAction += Attack;
     }
 
     protected virtual void AutoAttack()
@@ -102,7 +111,8 @@ public class Weapon : MonoBehaviour
     public void TryShooting()
     {
         _isShooting = true;
-        OnAttack?.Invoke();
+        AttackAction();
+        //OnAttack?.Invoke();
     }
 
     public void StopShooting()

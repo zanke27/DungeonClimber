@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerWeapon : AgentWeapon
 {
 
-
     public virtual void Shoot()
     {
         if (_weapon != null)
