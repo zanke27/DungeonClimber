@@ -22,7 +22,7 @@ public class AgentWeapon : MonoBehaviour
 
     private void Update()
     {
-        AimWeapon();
+        //AimWeapon();
     }
 
     public virtual void Attack()
@@ -34,7 +34,6 @@ public class AgentWeapon : MonoBehaviour
     {
         if (_weapon == null) return; // 들고있는 무기가 없거나
         if (dir == Vector2.zero) return; // 움직이고 있지 않거나
-        if (target != null) return; // 타겟이 있다면 리턴
 
         _desireAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
@@ -43,18 +42,21 @@ public class AgentWeapon : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(_desireAngle, Vector3.forward);
     }
 
-    public virtual void AimWeapon()
+    public virtual void AimWeapon(Vector2 moveDir)
     {
         if (_weapon == null) return;
-        if (target == null) return;
+        if (moveDir == Vector2.zero && target == null) return;
 
-        Vector2 pointerPos = target.transform.position;
-
-        Vector3 aimDirection = (Vector3)pointerPos - transform.position;
-        //360도 각도로 목적지까지의 각도를 계산하고
-        _desireAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-
-        //삼각형에서 
+        if (target != null)
+        {
+            Vector2 pointerPos = target.transform.position;
+            Vector3 aimDirection = (Vector3)pointerPos - transform.position;
+            _desireAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        }
+        else if(target == null)
+        {
+            _desireAngle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
+        }
 
         AdjustWeaponRendering();
 

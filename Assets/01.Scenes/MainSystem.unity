@@ -317,7 +317,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 375347252}
         m_TargetAssemblyTypeName: AgentWeapon, Assembly-CSharp
-        m_MethodName: MoveDirAimWeapon
+        m_MethodName: AimWeapon
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -19,7 +19,6 @@ public class AgentRenderer : MonoBehaviour
 
     public void FaceDirection(Vector2 pointerInput)
     {
-
         Vector2 dir = target.transform.position - transform.position;
 
         if (target == null)
