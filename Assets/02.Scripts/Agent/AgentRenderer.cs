@@ -5,26 +5,29 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AgentRenderer : MonoBehaviour
 {
+    private Player player;
     private SpriteRenderer _spriteRenderer;
 
-    public GameObject target;
+    private GameObject _target => player.Target;
 
     private Vector3 result;
     private Vector3 targetDir;
 
     private void Awake()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void FaceDirection(Vector2 pointerInput)
     {
-        Vector2 dir = target.transform.position - transform.position;
-
-        if (target == null)
+        if (_target == null)
             result = Vector3.Cross(Vector2.up, pointerInput);
         else
+        {
+            Vector2 dir = _target.transform.position - transform.position;
             result = Vector3.Cross(Vector2.up, dir);
+        }
 
         if (result.z > 0)
            _spriteRenderer.flipX = true;

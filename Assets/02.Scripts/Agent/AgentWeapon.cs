@@ -8,21 +8,20 @@ public class AgentWeapon : MonoBehaviour
 
     protected WeaponRenderer _weaponRenderer;
 
+
     protected float _desireAngle;
 
     protected Vector2 _toEnemyVec;
 
-    public GameObject target;
+    protected GameObject _target => player.Target;
 
+    private Player player;
+    
     private void Awake()
     {
         _weapon = GetComponentInChildren<Weapon>();
         _weaponRenderer = GetComponentInChildren<WeaponRenderer>();
-    }
-
-    private void Update()
-    {
-        //AimWeapon();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     public virtual void Attack()
@@ -30,30 +29,30 @@ public class AgentWeapon : MonoBehaviour
         _weapon.ShootBullet();
     }
 
-    public virtual void MoveDirAimWeapon(Vector2 dir)
-    {
-        if (_weapon == null) return; // 들고있는 무기가 없거나
-        if (dir == Vector2.zero) return; // 움직이고 있지 않거나
+    //public virtual void MoveDirAimWeapon(Vector2 dir)
+    //{
+    //    if (_weapon == null) return; // 들고있는 무기가 없거나
+    //    if (dir == Vector2.zero) return; // 움직이고 있지 않거나
 
-        _desireAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    //    _desireAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        AdjustWeaponRendering();
+    //    AdjustWeaponRendering();
 
-        transform.rotation = Quaternion.AngleAxis(_desireAngle, Vector3.forward);
-    }
+    //    transform.rotation = Quaternion.AngleAxis(_desireAngle, Vector3.forward);
+    //}
 
     public virtual void AimWeapon(Vector2 moveDir)
     {
         if (_weapon == null) return;
-        if (moveDir == Vector2.zero && target == null) return;
+        if (moveDir == Vector2.zero && _target == null) return;
 
-        if (target != null)
+        if (_target != null)
         {
-            Vector2 pointerPos = target.transform.position;
+            Vector2 pointerPos = _target.transform.position;
             Vector3 aimDirection = (Vector3)pointerPos - transform.position;
             _desireAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         }
-        else if(target == null)
+        else if(_target == null)
         {
             _desireAngle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
         }
