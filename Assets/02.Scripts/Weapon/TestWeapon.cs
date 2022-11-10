@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWeapon : Weapon
+public class TestWeapon : Gun
 {
     protected override void AttackActionInit()
     {

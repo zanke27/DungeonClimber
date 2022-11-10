@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "SO/WeaponData/GunDataSO")]
-public class GunDataSO : ScriptableObject
+[CreateAssetMenu(menuName = "SO/WeaponData/SwordDataSO")]
+public class SwordDataSO : ScriptableObject
 {
-    [Header("총 관련")]
-    [Tooltip("총의 스프라이트")]
-    public Sprite gunSprite;
+    [Tooltip("검의 스프라이트")]
+    public Sprite swrodData;
 
-    [Tooltip("총알의 데이터")]
+    [Header("총알 관련")]
+    [Tooltip("검에서 나오는 총알의 데이터")]
     public BulletDataSO bulletDataSO;
 
     [Space(10f)]

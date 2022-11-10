@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class AgentWeapon : MonoBehaviour
 {
@@ -8,25 +9,16 @@ public class AgentWeapon : MonoBehaviour
 
     protected WeaponRenderer _weaponRenderer;
 
-
     protected float _desireAngle;
 
     protected Vector2 _toEnemyVec;
 
-    protected GameObject _target => player.Target;
-
-    private Player player;
+    protected GameObject _target => PlayerTrm.Target;
     
     private void Awake()
     {
         _weapon = GetComponentInChildren<Weapon>();
         _weaponRenderer = GetComponentInChildren<WeaponRenderer>();
-        player = GameObject.Find("Player").GetComponent<Player>();
-    }
-
-    public virtual void Attack()
-    {
-        _weapon.ShootBullet();
     }
 
     //public virtual void MoveDirAimWeapon(Vector2 dir)
@@ -66,7 +58,22 @@ public class AgentWeapon : MonoBehaviour
     {
         if (_weaponRenderer != null)
         {
-            _weaponRenderer.FlipSprite(_desireAngle > 90f || _desireAngle < -90f); //攫力 true具?
+            if (_weapon.weaponType == WeaponType.Gun)
+            {
+                _weaponRenderer.FlipSprite(_desireAngle > 90f || _desireAngle < -90f); //攫力 true具?
+            }
+            else if (_weapon.weaponType == WeaponType.Sword)
+            {
+                if (_desireAngle > 90f || _desireAngle < -90f)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                    _desireAngle -= 180;
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+            }
             //_weaponRenderer.RenderBehindHead(_desireAngle > 0 && _desireAngle < 180);
         }
     }

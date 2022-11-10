@@ -8,9 +8,13 @@ public class Player : MonoBehaviour
     public GameObject Target => _target;
 
     private TargetChecker targetChecker;
+    private AgentMove _agentMove;
+
+    public Vector2 MoveDir => _agentMove.MoveDir;
 
     private void Awake()
     {
-        targetChecker = GameObject.Find("TargetChecker").GetComponent<TargetChecker>();
+        _agentMove = GetComponentInChildren<AgentMove>();
+        targetChecker = GetComponentInChildren<TargetChecker>();
     }
 }

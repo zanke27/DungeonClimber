@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff0e7eed254a5694c9faaf6b713cff7d, type: 3}
-  m_Name: TestGunDataSO
+  m_Script: {fileID: 11500000, guid: 1034e19d3f96ee843a35f6f16e9d77b9, type: 3}
+  m_Name: TestSwordData
   m_EditorClassIdentifier: 
-  gunSprite: {fileID: 21300000, guid: c0f42da72c8397f4d8a0744eb24acde6, type: 3}
-  bulletDataSO: {fileID: 11400000, guid: 2927511e4baf426488ee7b3f8d811f0c, type: 2}
+  swrodData: {fileID: 21300000, guid: 4c9ec693a2bef2a4db7adf4bbe2ffdab, type: 3}
+  bulletDataSO: {fileID: 0}
   bulletSpreadAngle: 0
-  attackDelay: 0.1
-  maxBullet: 50
-  haveBullet: 50
+  attackDelay: 0.5
+  maxBullet: 0
+  haveBullet: 0
   attackType: 0
   chargeTime: 0

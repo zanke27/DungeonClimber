@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class AgentRenderer : MonoBehaviour
 {
-    private Player player;
     private SpriteRenderer _spriteRenderer;
 
-    private GameObject _target => player.Target;
+    private GameObject _target => PlayerTrm.Target;
 
     private Vector3 result;
     private Vector3 targetDir;
 
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

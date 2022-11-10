@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AgentMove : MonoBehaviour
 {
-    protected Vector2 _moveDir = Vector2.zero;
+    protected Vector2 _moveDir = Vector2.right;
+    public Vector2 MoveDir => _moveDir;
     protected Rigidbody2D _rigidbody2D = null;
 
     private void Awake()
