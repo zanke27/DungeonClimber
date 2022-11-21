@@ -24,12 +24,17 @@ public abstract class Weapon : MonoBehaviour
     protected float chargeTime = 0f;
     #endregion
 
-    public WeaponType weaponType;
+    protected WeaponRenderer _weaponRenderer;
+    public WeaponRenderer WeaponRenderer => _weaponRenderer;
+
+    protected WeaponType weaponType;
+    public WeaponType WeaponType => weaponType;
 
     protected Action AttackAction;
 
     protected virtual void Awake()
     {
+        _weaponRenderer = GetComponent<WeaponRenderer>();
         AttackActionInit();
     }
 

@@ -12,8 +12,8 @@ public class Sword : Weapon
 
     protected Vector2 targetDir;
 
-    public float speed1;
-    public float speed2;
+    public float speed1 = 0.1f;
+    public float speed2 = 0.1f;
 
     protected override void Awake()
     {

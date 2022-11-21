@@ -15,10 +15,9 @@ public class AgentWeapon : MonoBehaviour
 
     protected GameObject _target => PlayerTrm.Target;
     
-    private void Awake()
+    protected virtual void Awake()
     {
-        _weapon = GetComponentInChildren<Weapon>();
-        _weaponRenderer = GetComponentInChildren<WeaponRenderer>();
+        AssignWeapon();
     }
 
     //public virtual void MoveDirAimWeapon(Vector2 dir)
@@ -32,6 +31,12 @@ public class AgentWeapon : MonoBehaviour
 
     //    transform.rotation = Quaternion.AngleAxis(_desireAngle, Vector3.forward);
     //}
+
+    public virtual void AssignWeapon()
+    {
+        _weapon = GetComponentInChildren<Weapon>();
+        _weaponRenderer = GetComponentInChildren<WeaponRenderer>();
+    }
 
     public virtual void AimWeapon(Vector2 moveDir)
     {
@@ -58,11 +63,11 @@ public class AgentWeapon : MonoBehaviour
     {
         if (_weaponRenderer != null)
         {
-            if (_weapon.weaponType == WeaponType.Gun)
+            if (_weapon.WeaponType == WeaponType.Gun)
             {
                 _weaponRenderer.FlipSprite(_desireAngle > 90f || _desireAngle < -90f); //¾ðÁ¦ true¾ß?
             }
-            else if (_weapon.weaponType == WeaponType.Sword)
+            else if (_weapon.WeaponType == WeaponType.Sword)
             {
                 if (_desireAngle > 90f || _desireAngle < -90f)
                 {
